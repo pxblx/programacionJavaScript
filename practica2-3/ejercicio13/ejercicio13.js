@@ -11,10 +11,9 @@
  */
 
 let contador = 1;
-function anade() {
+document.getElementById("boton").addEventListener("click", function() {
     let nodo = document.createElement("li");
-    let contenido = document.createTextNode(contador);
-    nodo.appendChild(contenido);
+    nodo.appendChild(document.createTextNode("Nuevo elemento (" + contador + ")"));
     document.getElementById("lista").appendChild(nodo);
     contador++;
-}
+});

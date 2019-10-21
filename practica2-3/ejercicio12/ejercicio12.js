@@ -1,5 +1,5 @@
 /**
- * Ejercicio 13
+ * Ejercicio 12
  * 
  * Completar el código JavaScript proporcionado para que cuando se pinche sobre el enlace se muestre
  * completo el contenido de texto. Además, el enlace debe dejar de mostrarse después de pulsarlo por
@@ -10,7 +10,8 @@
  * @author Pablo
  */
 
-function muestra() {
-    document.getElementById("enlace").className = "oculto";
+let enlace = document.getElementById("enlace");
+enlace.addEventListener("click", function() {
+    enlace.className = "oculto";
     document.getElementById("adicional").className = "visible";
-}
+});
