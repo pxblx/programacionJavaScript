@@ -4,15 +4,14 @@
  * @author Pablo
  */
 
-function muestraInformacion(mensaje) {
-	document.getElementById("info").innerHTML = "<h1>" + mensaje[0] + "</h1>";
+let muestraInformacion = function(mensaje) {
+	info.innerHTML = "<h1>" + mensaje[0] + "</h1>";
 	for (let i = 1; i < mensaje.length; i++) {
-		document.getElementById("info").innerHTML += "<p>" + mensaje[i] + "</p>";
+		info.innerHTML += "<p>" + mensaje[i] + "</p>";
 	}
 }
 
-function capturarEventos(evento) {
-    let info = document.getElementById("info");
+let capturarEventos = function(evento) {
     switch (evento.type) {
         case "mousemove":
             info.style.backgroundColor = "white";
@@ -33,6 +32,7 @@ function capturarEventos(evento) {
 }
 
 window.onload = function() {
+    info = document.getElementById("info"); // Global
     document.onmousemove = capturarEventos;
     document.onkeypress = capturarEventos;
     document.onclick = capturarEventos;

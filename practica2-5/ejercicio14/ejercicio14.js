@@ -4,7 +4,7 @@
  * @author Pablo
  */
 
-function muestraOculta(id) {
+let muestraOculta = function(id) {
     let elemento = document.getElementById("contenidos_" + id);
     let enlace = document.getElementById("enlace_" + id);
     

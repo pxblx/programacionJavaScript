@@ -4,7 +4,7 @@
  * @author Pablo
  */
 
-function informacion(elEvento) {
+let informacion = function(elEvento) {
     let evento = elEvento || window.event;
     let tamano = tamanoVentanaNavegador();
     let horizontal = "";
@@ -25,7 +25,7 @@ function informacion(elEvento) {
 	muestraInformacion(["Click en: ", vertical, horizontal]);
 }
 
-function muestraInformacion(mensaje) {
+let muestraInformacion = function(mensaje) {
     let info = document.getElementById("info");
 	info.innerHTML = "<h1>" + mensaje[0] + "</h1>";
 	for (let i = 1; i < mensaje.length; i++) {
@@ -33,8 +33,10 @@ function muestraInformacion(mensaje) {
 	}
 }
 
-function tamanoVentanaNavegador() {
+let tamanoVentanaNavegador = function() {
 	return [window.innerWidth, window.innerHeight];
 }
 
-document.onclick = informacion;
+window.onload = function() {
+    document.onclick = informacion;
+}
