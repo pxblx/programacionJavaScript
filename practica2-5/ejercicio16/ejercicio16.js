@@ -3,40 +3,53 @@
  * 
  * @author Pablo
  */
+{
+    let elementoInfo;
 
-let informacion = function(elEvento) {
-    let evento = elEvento || window.event;
-    let tamano = tamanoVentanaNavegador();
-    let horizontal = "";
-    let vertical = "";
-
-    if (evento.clientX > tamano[0] / 2) {
-        horizontal = "derecha";
-    } else {
-        horizontal = "izquierda";
+    /**
+     * Obtener la información sobre el evento click y mostrarla
+     * 
+     * @param {Event} evento
+     */
+    let informacion = function (evento) {
+        console.log(evento);
+        let [tamanoX, tamanoY] = tamanoVentanaNavegador();
+        let clickX = evento.clientX;
+        let clickY = evento.clientY;
+        muestraInformacion([evento.type,
+            (clickX > tamanoX / 2 ? "derecha" : "izquierda") + " [" + clickX + "]",
+            (clickY > tamanoY / 2 ? "abajo" : "arriba") + " [" + clickY + "]"]);
     }
 
-    if (evento.clientY > tamano[1] / 2) {
-        vertical = "abajo";
-    } else {
-        vertical = "arriba";
+    /**
+     * Mostrar la información del evento
+     * 
+     * @param {string} mensaje
+     */
+    let muestraInformacion = function (mensaje) {
+        let texto = "<h1>" + mensaje[0] + "</h1>";
+        for (let i = 1; i < mensaje.length; i++) {
+            texto += "<p>" + mensaje[i] + "</p>";
+        }
+        elementoInfo.innerHTML = texto;
     }
 
-	muestraInformacion(["Click en: ", vertical, horizontal]);
-}
+    /**
+     * Obtener el tamaño de la ventana del navegador
+     * 
+     * @returns x, y
+     */
+    let tamanoVentanaNavegador = function () {
+        return [window.innerWidth, window.innerHeight];
+    }
 
-let muestraInformacion = function(mensaje) {
-    let info = document.getElementById("info");
-	info.innerHTML = "<h1>" + mensaje[0] + "</h1>";
-	for (let i = 1; i < mensaje.length; i++) {
-		info.innerHTML += "<p>" + mensaje[i] + "</p>";
-	}
-}
+    /**
+     * Inicio
+     */
+    let init = function () {
+        elementoInfo = document.getElementById("info");
+        document.addEventListener("click", informacion);
+    }
 
-let tamanoVentanaNavegador = function() {
-	return [window.innerWidth, window.innerHeight];
-}
-
-window.onload = function() {
-    document.onclick = informacion;
+    document.addEventListener("DOMContentLoaded", init);
 }
