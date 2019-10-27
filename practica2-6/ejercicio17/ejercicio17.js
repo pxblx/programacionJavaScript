@@ -13,12 +13,12 @@
      */
     let limitar = function (evento) {
         switch (evento.key) {
-            case 'ArrowLeft':
-            case 'ArrowRight':
-            case 'ArrowUp':
-            case 'ArrowDown':
-            case 'Backspace':
-            case 'Delete':
+            case "ArrowLeft":
+            case "ArrowRight":
+            case "ArrowUp":
+            case "ArrowDown":
+            case "Backspace":
+            case "Delete":
             return;
         }
         if (elementoTexto.value.length >= LIMITE_CARACTERES) {
@@ -31,7 +31,9 @@
      */
     let actualizarInfo = function () {
         let restan = LIMITE_CARACTERES - elementoTexto.value.length;
-        elementoInfo.innerHTML = restan ? `Caracteres restantes: <b>${restan}</b>` : `Has llegado al límite de <b>${LIMITE_CARACTERES}</b> caracteres`;
+        elementoInfo.innerHTML = restan ?
+            `Caracteres restantes: <b>${restan}</b>` :
+            `Has llegado al límite de <b>${LIMITE_CARACTERES}</b> caracteres`;
     }
 
     /**

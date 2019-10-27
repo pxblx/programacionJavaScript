@@ -10,12 +10,12 @@
     let numero = pattern.exec(dni)[1];
 
     if (numero < 0 || numero > 99999999) {
-        alert("DNI no valido");
+        console.log("DNI no valido");
     } else {
         if (LETRAS[numero % 23] === pattern.exec(dni)[2]) {
-            alert("DNI válido");
+            console.log("DNI válido");
         } else {
-            alert("DNI no válido");
+            console.log("DNI no válido");
         }
     }
 }
