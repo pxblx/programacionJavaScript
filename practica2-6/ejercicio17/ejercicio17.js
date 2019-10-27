@@ -4,25 +4,34 @@
  * @author Pablo
  */
 {
+    const LIMITE_CARACTERES = 5;
     let elementoTexto;
     let elementoInfo;
-    let max = 10;
 
     /**
-     * Limitar el número de caracteres del elemento
+     * Limitar el número de caracteres
      */
-    let limita = function () {
-        if (elementoTexto.value.length >= max) {
-                return false;
+    let limitar = function (evento) {
+        switch (evento.key) {
+            case 'ArrowLeft':
+            case 'ArrowRight':
+            case 'ArrowUp':
+            case 'ArrowDown':
+            case 'Backspace':
+            case 'Delete':
+            return;
         }
-        actualizarInfo();
+        if (elementoTexto.value.length >= LIMITE_CARACTERES) {
+            evento.preventDefault();
+        }
     }
 
     /**
      * Actualizar información
      */
     let actualizarInfo = function () {
-        elementoInfo.innerHTML = max - elementoTexto.value.length + "/" + max + " caracteres restantes";
+        let restan = LIMITE_CARACTERES - elementoTexto.value.length;
+        elementoInfo.innerHTML = restan ? `Caracteres restantes: <b>${restan}</b>` : `Has llegado al límite de <b>${LIMITE_CARACTERES}</b> caracteres`;
     }
 
     /**
@@ -31,7 +40,8 @@
     let init = function () {
         elementoTexto = document.getElementById("texto");
         elementoInfo = document.getElementById("info");
-        elementoTexto.onkeypress = limita();
+        elementoTexto.addEventListener("keydown", limitar);
+        elementoTexto.addEventListener("keyup", actualizarInfo);
         actualizarInfo();
     }
 
