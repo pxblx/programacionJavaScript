@@ -9,11 +9,16 @@
  * 
  * @author Pablo
  */
+{
+    let init = function () {
+        let contador = 1;
+        document.getElementById("boton").addEventListener("click", function () {
+            let nodo = document.createElement("li");
+            nodo.appendChild(document.createTextNode("Nuevo elemento (" + contador + ")"));
+            document.getElementById("lista").appendChild(nodo);
+            contador++;
+        });
+    }
 
-let contador = 1;
-document.getElementById("boton").addEventListener("click", function() {
-    let nodo = document.createElement("li");
-    nodo.appendChild(document.createTextNode("Nuevo elemento (" + contador + ")"));
-    document.getElementById("lista").appendChild(nodo);
-    contador++;
-});
+    window.addEventListener("DOMContentLoaded", init);
+}

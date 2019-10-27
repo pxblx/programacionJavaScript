@@ -3,6 +3,7 @@
  * 
  * @author Pablo
  */
-
-let mensaje = "Hola, qué fácil es incluir 'comillas simples' y \"comillas dobles\"";
-alert(mensaje);
+{
+    let mensaje = "Hola, qué fácil es incluir 'comillas simples' y \"comillas dobles\"";
+    console.log(mensaje);
+}

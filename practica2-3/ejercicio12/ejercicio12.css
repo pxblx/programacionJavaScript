@@ -1,0 +1,9 @@
+/* Ejercicio 12 */
+
+.oculto {
+    display: none;
+}
+
+.visible {
+    display: inline;
+}

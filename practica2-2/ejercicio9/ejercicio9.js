@@ -8,14 +8,16 @@
  * @author Pablo
  */
 
-function info(cadena) {
-    if (cadena.toUpperCase() === cadena) {
-        console.log("La cadena está en mayúsculas");
-    } else if (cadena.toLowerCase() === cadena) {
-        console.log("La cadena está en minúsculas");
-    } else {
-        console.log("La cadena está en mayúsculas y minúsculas");
+{
+    let info = function (cadena) {
+        if (cadena.toUpperCase() === cadena) {
+            console.log("La cadena está en mayúsculas");
+        } else if (cadena.toLowerCase() === cadena) {
+            console.log("La cadena está en minúsculas");
+        } else {
+            console.log("La cadena está en mayúsculas y minúsculas");
+        }
     }
-}
 
-info(prompt("Introduce una cadena"));
+    info(prompt("Introduce una cadena"));
+}

@@ -7,9 +7,10 @@
  * 
  * @author Pablo
  */
+{
+    let esPar = function (numero) {
+        return (numero % 2 === 0) ? "Es par" : "Es impar";
+    }
 
-function esPar(numero) {
-    return (numero % 2 === 0) ? "Es par" : "Es impar"; 
+    console.log(esPar(prompt("Introduce un número:")));
 }
-
-console.log(esPar(prompt("Introduce un número:")));

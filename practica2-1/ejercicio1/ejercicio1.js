@@ -3,6 +3,7 @@
  * 
  * @author Pablo
  */
-
-alert("Hola");
-alert("Soy el primer script");
+{
+    console.log("Hola");
+    console.log("Soy el primer script");
+}

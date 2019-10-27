@@ -37,7 +37,7 @@
     /**
      * Obtener el tamaño de la ventana del navegador
      * 
-     * @returns x, y
+     * @returns {Array} ancho y alto del área de contenido de la ventana (x, y)
      */
     let tamanoVentanaNavegador = function () {
         return [window.innerWidth, window.innerHeight];

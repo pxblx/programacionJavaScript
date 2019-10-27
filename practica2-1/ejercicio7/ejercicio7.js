@@ -3,12 +3,13 @@
  * 
  * @author Pablo
  */
+{
+    let n = prompt("Introduce un número");
 
-let n = prompt("Introduce un número");
+    let res = 1;
+    for (let i = 1; i <= n; i++) {
+        res *= i;
+    }
 
-let res = 1;
-for (let i = 1; i <= n; i++) {
-    res *= i;
+    console.log(res);
 }
-
-console.log(res);

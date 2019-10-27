@@ -9,9 +9,14 @@
  * 
  * @author Pablo
  */
+{
+    let init = function () {
+        let enlace = document.getElementById("enlace");
+        enlace.addEventListener("click", function () {
+            enlace.className = "oculto";
+            document.getElementById("adicional").className = "visible";
+        });
+    }
 
-let enlace = document.getElementById("enlace");
-enlace.addEventListener("click", function() {
-    enlace.className = "oculto";
-    document.getElementById("adicional").className = "visible";
-});
+    window.addEventListener("DOMContentLoaded", init);
+}

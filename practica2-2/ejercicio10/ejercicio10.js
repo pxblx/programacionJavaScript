@@ -7,14 +7,15 @@
  * 
  * @author Pablo
  */
-
-function esPalindromo(cadena) {
-    cadena = cadena.toLowerCase().replace(/\s/g, "");
-    if (cadena === cadena.split("").reverse().join("")) {
-        console.log("Es un palíndromo");
-    } else {
-        console.log("No es un palíndromo");
+{
+    let esPalindromo = function (cadena) {
+        cadena = cadena.toLowerCase().replace(/\s/g, "");
+        if (cadena === cadena.split("").reverse().join("")) {
+            console.log("Es un palíndromo");
+        } else {
+            console.log("No es un palíndromo");
+        }
     }
+    
+    esPalindromo(prompt("Introduce una cadena"));
 }
-
-esPalindromo(prompt("Introduce una cadena"));
