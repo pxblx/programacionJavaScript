@@ -6,8 +6,10 @@
  * @author Pablo
  */
 
-let coches = ["Mercedes", "Volvo", "Renault", "Ford", "Seat"];
-let cadenita = "Hola";
+{
+    let coches = ["Mercedes", "Volvo", "Renault", "Ford", "Seat"];
+    let cadenita = "Hola";
 
-console.log(Array.isArray(coches));
-console.log(Array.isArray(cadenita));
+    console.log(Array.isArray(coches));
+    console.log(Array.isArray(cadenita));
+}

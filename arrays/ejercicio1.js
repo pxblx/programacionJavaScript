@@ -9,8 +9,10 @@
  * @author Pablo
  */
 
-let coches = ["Mercedes", "Volvo", "Renault", "Ford", "Seat"];
+{
+    let coches = ["Mercedes", "Volvo", "Renault", "Ford", "Seat"];
 
-coches.forEach(coche => {
-    console.log(coche);
-});
+    coches.forEach(coche => {
+        console.log(coche);
+    });
+}

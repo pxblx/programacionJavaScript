@@ -7,7 +7,9 @@
  * @author Pablo
  */
 
-let coches = ["Mercedes", "Volvo", "Renault", "Ford", "Seat"];
+{
+    let coches = ["Mercedes", "Volvo", "Renault", "Ford", "Seat"];
 
-console.log(0 in coches);
-console.log(900 in coches);
+    console.log(0 in coches);
+    console.log(900 in coches);
+}

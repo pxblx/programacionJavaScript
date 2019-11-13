@@ -5,12 +5,14 @@
  * @author Pablo
  */
 
-let numerosNaturales = function (n) {
-    let arrayNumeros = [];
-    for (let i = 0; i < n; i++) {
-        arrayNumeros.push(i);
+{
+    let numerosNaturales = function (n) {
+        let arrayNumeros = [];
+        for (let i = 0; i < n; i++) {
+            arrayNumeros.push(i);
+        }
+        return arrayNumeros;
     }
-    return arrayNumeros;
+    
+    console.log(numerosNaturales(5));
 }
-
-console.log(numerosNaturales(5));

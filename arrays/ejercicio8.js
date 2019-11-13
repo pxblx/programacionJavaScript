@@ -12,24 +12,26 @@
  * @author Pablo
  */
 
-let coches = ["Mercedes", "Volvo", "Renault", "Ford", "Seat"];
+{
+    let coches = ["Mercedes", "Volvo", "Renault", "Ford", "Seat"];
 
-// Devuelve los valores (cadenas en este caso) que tengan 4 caracteres
-console.log(coches.filter(function (elemento) {
-    return elemento.length == 4;
-}));
+    // Devuelve los valores (cadenas en este caso) que tengan 4 caracteres
+    console.log(coches.filter(function (elemento) {
+        return elemento.length == 4;
+    }));
 
-// Verifica si existe alguna cadena en el array que tenga 4 caracteres
-console.log(coches.some(function (elemento) {
-    return elemento.length == 8;
-}));
+    // Verifica si existe alguna cadena en el array que tenga 4 caracteres
+    console.log(coches.some(function (elemento) {
+        return elemento.length == 8;
+    }));
 
-// Verifica si todos los elementos del array son cadenas
-console.log(coches.every(function (elemento) {
-    return typeof elemento == "string";
-}));
+    // Verifica si todos los elementos del array son cadenas
+    console.log(coches.every(function (elemento) {
+        return typeof elemento == "string";
+    }));
 
-// Itera el array para mostrar todos sus elementos
-console.log(coches.forEach(marca => {
-    console.log(marca);
-}));
+    // Itera el array para mostrar todos sus elementos
+    console.log(coches.forEach(marca => {
+        console.log(marca);
+    }));
+}
