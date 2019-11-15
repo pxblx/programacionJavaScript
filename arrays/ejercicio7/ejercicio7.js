@@ -6,13 +6,13 @@
 
 {
     let eliminarUndefined = function (array) {
-        for (let i = 0; i < array.length; i++) {
-            if (array[i] === undefined) {
-                array.splice(i, 1);
+        array.forEach(function (element, index) {
+            if (element === undefined) {
+                array.splice(index, 1);
             }
-        }
+        });
         return array;
     }
-    
-    console.log(eliminarUndefined(["Hola", undefined, 3, null, true]));
+
+    console.log(eliminarUndefined(["Hola", undefined, 3, null, true, false]));
 }

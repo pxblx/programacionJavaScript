@@ -15,14 +15,14 @@
 
     t0 = performance.now();
     elementos = [];
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < 1000; i++) {
         elementos.push(i);
     }
     t1 = performance.now();
     console.log("Con push, en añadir tarda " + (t1 - t0) + " milisegundos.");
 
     t0 = performance.now();
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < 1000; i++) {
         elementos.pop();
     }
     t1 = performance.now();
@@ -30,14 +30,14 @@
 
     t0 = performance.now();
     elementos = [];
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < 1000; i++) {
         elementos.unshift(i);
     }
     t1 = performance.now();
     console.log("Con unshift, en añadir tarda " + (t1 - t0) + " milisegundos.");
 
     t0 = performance.now();
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < 1000; i++) {
         elementos.shift();
     }
     t1 = performance.now();

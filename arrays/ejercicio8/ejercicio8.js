@@ -31,7 +31,7 @@
     }));
 
     // Itera el array para mostrar todos sus elementos
-    console.log(coches.forEach(marca => {
+    coches.forEach(marca => {
         console.log(marca);
-    }));
+    });
 }
