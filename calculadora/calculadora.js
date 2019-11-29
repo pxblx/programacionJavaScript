@@ -6,6 +6,7 @@
 
 {
     let init = function () {
+        let fragment = document.createDocumentFragment();
         let div = document.createElement("div");
         div.style.border = "1px solid";
         div.style.display = "inline-block";
@@ -38,7 +39,8 @@
             counter++;
         });
 
-        document.body.appendChild(div);
+        fragment.appendChild(div);
+        document.body.appendChild(fragment);
     }
     
     addEventListener("DOMContentLoaded", init);
