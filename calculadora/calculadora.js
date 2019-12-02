@@ -12,6 +12,7 @@
         // Operador 2
         op2: 0,
         // Código de operación
+        // 1 - Suma, 2 - Resta, 3 - Multiplicación, 4 - División
         operacion: 0,
 
         // Listener para los números
@@ -58,21 +59,24 @@
         },
 
         // Listener para el igual
-        clickIgual: function () {
+        clickResultado: function (clickPorcentaje) {
             this.op1 = parseFloat(this.op1);
+            if (clickPorcentaje) {
+                this.op1 = (this.op1 * this.op2) / 100;
+            }
             switch (this.operacion) {
                 case 1:
                     this.op1 += this.op2;
-                break;
+                    break;
                 case 2:
                     this.op1 = this.op2 - this.op1;
-                break;
+                    break;
                 case 3:
                     this.op1 *= this.op2;
-                break;
+                    break;
                 case 4:
                     this.op1 = this.op2 / this.op1;
-                break;
+                    break;
             }
             calculadora.refrescar();
             this.op2 = parseFloat(this.op1);
@@ -134,7 +138,7 @@
                             calculadora.clickBorrar();
                             break;
                         case 3:
-                            // ...
+                            calculadora.clickResultado(true);
                             break;
                         case 4:
                             calculadora.operar(1);
@@ -155,7 +159,7 @@
                             calculadora.clickComa();
                             break;
                         case 10:
-                            calculadora.clickIgual();
+                            calculadora.clickResultado(false);
                             break;
                         default:
                             calculadora.clickNumero(idBoton[0]);
