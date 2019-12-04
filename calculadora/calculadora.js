@@ -11,9 +11,8 @@
         op1: 0,
         // Operador 2
         op2: 0,
-        // Código de operación actual
-        // 1 - Suma, 2 - Resta, 3 - Multiplicación, 4 - División
-        operacionActual: 0,
+        // Operación actual
+        operacionActual: "",
 
         // Obtener el resultado de la operación actual
         obtenerResultado: function (porcentaje) {
@@ -22,16 +21,16 @@
                 this.op1 = (this.op1 * this.op2) / 100;
             }
             switch (this.operacionActual) {
-                case 1: // Suma
+                case "+": // Suma
                     this.op1 += this.op2;
                     break;
-                case 2: // Resta
+                case "-": // Resta
                     this.op1 = this.op2 - this.op1;
                     break;
-                case 3: // Multiplicación
+                case "x": // Multiplicación
                     this.op1 *= this.op2;
                     break;
-                case 4: // División
+                case "/": // División
                     this.op1 = this.op2 / this.op1;
                     break;
             }
@@ -41,13 +40,13 @@
         },
 
         // Hacer operación
-        hacerOperacion: function (value) {
+        hacerOperacion: function (operacion) {
             if (this.op1 == 0) {
                 this.op1 = parseFloat(document.getElementsByTagName("input")[0].value);
             }
             this.op2 = parseFloat(this.op1);
             this.op1 = 0;
-            this.operacionActual = value;
+            this.operacionActual = operacion;
         },
 
         // Refrescar display
@@ -78,20 +77,11 @@
                         calculadora.obtenerResultado(true);
                     }
                 case "+": // Suma
-                    return () => {
-                        calculadora.hacerOperacion(1);
-                    }
                 case "-": // Resta
-                    return () => {
-                        calculadora.hacerOperacion(2);
-                    }
                 case "x": // Multiplicación
-                    return () => {
-                        calculadora.hacerOperacion(3);
-                    }
                 case "/": // División
                     return () => {
-                        calculadora.hacerOperacion(4);
+                        calculadora.hacerOperacion(boton);
                     }
                 case "+/-": // Cambio de signo
                     return () => {
