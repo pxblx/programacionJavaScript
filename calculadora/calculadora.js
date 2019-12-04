@@ -1,5 +1,5 @@
 /**
- * Calculadora
+ * Calculadora mediante objeto literal
  * 
  * @author Pablo
  */
@@ -11,105 +11,133 @@
         op1: 0,
         // Operador 2
         op2: 0,
-        // Código de operación
+        // Código de operación actual
         // 1 - Suma, 2 - Resta, 3 - Multiplicación, 4 - División
-        operacion: 0,
+        operacionActual: 0,
 
-        // Listener para los números
-        clickNumero: function (value) {
-            if (this.op1 == 0 && this.op1 !== "0." || this.op1 == "0") {
-                this.op1 = value;
-            } else {
-                this.op1 += value;
-            }
-            calculadora.refrescar();
-        },
-
-        // Listener para la coma
-        clickComa: function () {
-            if (this.op1 == 0) {
-                this.op1 = "0.";
-            } else if (this.op1.indexOf(".") == -1) {
-                this.op1 += ".";
-            }
-            calculadora.refrescar();
-        },
-
-        // Listener para el clear
-        clickClear: function () {
-            this.op1 = 0;
-            this.op2 = 0;
-            calculadora.refrescar();
-        },
-
-        // Listener para el cambio de signo
-        cambioSigno: function () {
-            this.op1 *= -1;
-            calculadora.refrescar();
-        },
-
-        // Listener para el borrar
-        clickBorrar: function () {
-            if (this.op1.length != 1) {
-                this.op1 = this.op1.substring(0, this.op1.length - 1);
-            } else {
-                this.op1 = 0;
-            }
-            calculadora.refrescar();
-        },
-
-        // Listener para el igual
-        clickResultado: function (clickPorcentaje) {
+        // Obtener el resultado de la operación actual
+        obtenerResultado: function (porcentaje) {
             this.op1 = parseFloat(this.op1);
-            if (clickPorcentaje) {
+            if (porcentaje) { // Si es porcentaje, el operador 1 pasa a ser el tanto por ciento
                 this.op1 = (this.op1 * this.op2) / 100;
             }
-            switch (this.operacion) {
-                case 1:
+            switch (this.operacionActual) {
+                case 1: // Suma
                     this.op1 += this.op2;
                     break;
-                case 2:
+                case 2: // Resta
                     this.op1 = this.op2 - this.op1;
                     break;
-                case 3:
+                case 3: // Multiplicación
                     this.op1 *= this.op2;
                     break;
-                case 4:
+                case 4: // División
                     this.op1 = this.op2 / this.op1;
                     break;
             }
-            calculadora.refrescar();
+            calculadora.refrescarDisplay();
             this.op2 = parseFloat(this.op1);
             this.op1 = 0;
         },
 
-        // Hacer operaciones
-        operar: function (value) {
+        // Hacer operación
+        hacerOperacion: function (value) {
             if (this.op1 == 0) {
-                this.op1 = parseFloat(document.getElementById("display").value);
+                this.op1 = parseFloat(document.getElementsByTagName("input")[0].value);
             }
             this.op2 = parseFloat(this.op1);
             this.op1 = 0;
-            this.operacion = value;
+            this.operacionActual = value;
         },
 
         // Refrescar display
-        refrescar: function () {
-            document.getElementById("display").value = this.op1;
+        refrescarDisplay: function () {
+            document.getElementsByTagName("input")[0].value = this.op1;
+        },
+
+        // Obtener listeners para los botones
+        getListener: function (boton) {
+            switch (boton) {
+                case "CE": // Limpiar
+                    return () => {
+                        this.op1 = 0;
+                        this.op2 = 0;
+                        calculadora.refrescarDisplay();
+                    }
+                case "&larr;": // Borrar
+                    return () => {
+                        if (this.op1.length != 1) {
+                            this.op1 = this.op1.substring(0, this.op1.length - 1);
+                        } else {
+                            this.op1 = 0;
+                        }
+                        calculadora.refrescarDisplay();
+                    }
+                case "%": // Porcentaje
+                    return () => {
+                        calculadora.obtenerResultado(true);
+                    }
+                case "+": // Suma
+                    return () => {
+                        calculadora.hacerOperacion(1);
+                    }
+                case "-": // Resta
+                    return () => {
+                        calculadora.hacerOperacion(2);
+                    }
+                case "x": // Multiplicación
+                    return () => {
+                        calculadora.hacerOperacion(3);
+                    }
+                case "/": // División
+                    return () => {
+                        calculadora.hacerOperacion(4);
+                    }
+                case "+/-": // Cambio de signo
+                    return () => {
+                        this.op1 *= -1;
+                        calculadora.refrescarDisplay();
+                    }
+                case ".": // Punto decimal
+                    return () => {
+                        if (this.op1 == 0) {
+                            this.op1 = "0.";
+                        } else if (this.op1.toString().indexOf(".") == -1) {
+                            this.op1 += ".";
+                        }
+                        calculadora.refrescarDisplay();
+                    }
+                case "=": // Igual
+                    return () => {
+                        calculadora.obtenerResultado(false);
+                    }
+                default: // Números
+                    return () => {
+                        if (this.op1 == 0 && this.op1 !== "0." || this.op1 == "0") {
+                            this.op1 = boton;
+                        } else {
+                            this.op1 += boton;
+                        }
+                        calculadora.refrescarDisplay();
+                    }
+            }
         },
 
         // Generar y mostrar la calculadora
         mostrarCalculadora: function () {
             let fragment = document.createDocumentFragment();
+
+            // Elemento div contenedor
             let div = document.createElement("div");
             div.style.border = "1px solid";
             div.style.display = "inline-block";
             div.style.padding = "10px";
+            div.style.backgroundColor = "#f6f9fc";
 
+            // Display
             let display = document.createElement("input");
             display.setAttribute("type", "text");
             display.setAttribute("readonly", "readonly");
-            display.setAttribute("id", "display");
             display.style.marginBottom = "10px";
             display.style.width = "100%";
             display.style.boxSizing = "border-box";
@@ -118,55 +146,20 @@
             div.appendChild(display);
             div.appendChild(document.createElement("br"));
 
-            let botones = [["CE", 1], ["&larr;", 2], ["%", 3], ["+", 4],
-                ["7", 0], ["8", 0], ["9", 0], ["-", 5],
-                ["4", 0], ["5", 0], ["6", 0], ["x", 6],
-                ["1", 0], ["2", 0], ["3", 0], ["/", 7],
-                ["0", 0], ["+/-", 8], [".", 9], ["=", 10]];
+            // Botones
+            let botones = ["CE", "&larr;", "%", "+",
+                "7", "8", "9", "-",
+                "4", "5", "6", "x",
+                "1", "2", "3", "/",
+                "0", "+/-", ".", "="];
             let counter = 1;
-            botones.forEach(idBoton => {
-                let boton = document.createElement("button");
-                boton.style.width = "50px";
-                boton.style.height = "30px";
-                boton.innerHTML = idBoton[0];
-                boton.addEventListener("click", function () {
-                    switch (idBoton[1]) {
-                        case 1:
-                            calculadora.clickClear();
-                            break;
-                        case 2:
-                            calculadora.clickBorrar();
-                            break;
-                        case 3:
-                            calculadora.clickResultado(true);
-                            break;
-                        case 4:
-                            calculadora.operar(1);
-                            break;
-                        case 5:
-                            calculadora.operar(2);
-                            break;
-                        case 6:
-                            calculadora.operar(3);
-                            break;
-                        case 7:
-                            calculadora.operar(4);
-                            break;
-                        case 8:
-                            calculadora.cambioSigno();
-                            break;
-                        case 9:
-                            calculadora.clickComa();
-                            break;
-                        case 10:
-                            calculadora.clickResultado(false);
-                            break;
-                        default:
-                            calculadora.clickNumero(idBoton[0]);
-                            break;
-                    }
-                });
-                div.appendChild(boton);
+            botones.forEach(boton => {
+                let button = document.createElement("button");
+                button.style.width = "50px";
+                button.style.height = "30px";
+                button.innerHTML = boton;
+                button.addEventListener("click", calculadora.getListener(boton));
+                div.appendChild(button);
                 if (counter == 4) {
                     div.appendChild(document.createElement("br"));
                     counter = 0;
@@ -179,10 +172,7 @@
         }
     }
 
-    // Función init
-    let init = function () {
+    addEventListener("DOMContentLoaded", function () {
         document.body.appendChild(calculadora.mostrarCalculadora());
-    }
-
-    addEventListener("DOMContentLoaded", init);
+    });
 }
