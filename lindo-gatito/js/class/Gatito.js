@@ -14,37 +14,40 @@
  * @param {Number} peso Peso del gatito
  * @param {String} estado Estado del gatito
  */
-function Gatito(nombre, nacimiento, raza, peso, estado) {
-    this.nombre = nombre;
+function Gatito(nombre, nacimiento, raza, peso) {
+    this.nombre = nombre.trim();
     this.nacimiento = nacimiento;
     this.raza = raza;
     this.peso = peso;
-    this.estado = estado;
+    this.estado = "Jugando";
 }
 
 /**
- * Devolver si el gatito está vivo o no
+ * Devolver si el gatito está muerto o no
  * 
  * @returns true o false
  */
-Gatito.prototype.estaVivo = function () {
-    return this.peso > 0 && this.peso < 10;
+Gatito.prototype.estaMuerto = function () {
+    if (this.peso < 1 || this.peso > 9) {
+        this.estado = "Muerto";
+    }
+    return this.peso < 1 || this.peso > 9;
 }
 
 /**
  * Jugar (decrementar peso)
  */
 Gatito.prototype.jugar = function () {
-    if (this.estaVivo) {
-        this.peso--;
-    }
+    if (this.estaMuerto()) {return}
+    this.peso--;
+    this.estado = "Jugando";
 }
 
 /**
  * Comer (incrementar peso)
  */
 Gatito.prototype.comer = function () {
-    if (this.estaVivo) {
-        this.peso++;
-    }
+    if (this.estaMuerto()) {return}
+    this.peso++;
+    this.estado = "Comiendo";
 }

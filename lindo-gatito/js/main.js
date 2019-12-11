@@ -92,7 +92,13 @@
         element.setAttribute("id", "crear");
         element.innerHTML = "Crear gatito";
         element.addEventListener("click", () => {
-            // ...
+            sessionStorage.setItem("nombre", document.getElementById("nombre").value);
+            sessionStorage.setItem("fecha", document.getElementById("fecha").value); 
+            sessionStorage.setItem("raza", document.getElementById("raza").value);
+            sessionStorage.setItem("peso", document.getElementById("peso").value); 
+            let ventana = window.open("", "", "height=500, width=700");
+            ventana.document.write("<!DOCTYPE html><html lang=\"es\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\"><script src=\"js/class/Gatito.js\"></script><script defer src=\"js/ventana.js\"></script></head><body></body></html>");
+            ventana.document.close();
         });
         fragment.appendChild(element);
 
