@@ -6,35 +6,44 @@
  */
 
 {
-    addEventListener("DOMContentLoaded", function () {
+    addEventListener("DOMContentLoaded", () => {
+        document.title = "Gatito";
+        
         let fragment = document.createDocumentFragment();
 
+        // Cabecera
+        let element = document.createElement("h1");
+        element.innerHTML = "Gatito";
+        fragment.appendChild(element);
+        fragment.appendChild(document.createElement("hr"));
+        fragment.appendChild(document.createElement("br"));
+
         // Label para el nombre
-        let label = document.createElement("label");
-        label.setAttribute("for", "nombre");
-        label.style.marginRight = "5px";
-        label.innerHTML = "Nombre:";
-        fragment.appendChild(label);
+        element = document.createElement("label");
+        element.setAttribute("for", "nombre");
+        element.style.marginRight = "5px";
+        element.innerHTML = "Nombre:";
+        fragment.appendChild(element);
 
         // Input para el nombre
-        let element = document.createElement("input");
+        element = document.createElement("input");
         element.setAttribute("type", "text");
-        element.setAttribute("name", "nombre");
+        element.setAttribute("id", "nombre");
         fragment.appendChild(element);
 
         fragment.appendChild(document.createElement("br"));
         fragment.appendChild(document.createElement("br"));
 
         // Label para la raza
-        label = document.createElement("label");
-        label.setAttribute("for", "raza");
-        label.style.marginRight = "5px";
-        label.innerHTML = "Raza:";
-        fragment.appendChild(label);
+        element = document.createElement("label");
+        element.setAttribute("for", "raza");
+        element.style.marginRight = "5px";
+        element.innerHTML = "Raza:";
+        fragment.appendChild(element);
 
         // Select para la raza
         element = document.createElement("select");
-        element.setAttribute("name", "raza");
+        element.setAttribute("id", "raza");
         ["Siamés", "Persa", "Sphynx"].forEach(raza => {
             let option = document.createElement("option");
             option.setAttribute("value", raza);
@@ -47,32 +56,32 @@
         fragment.appendChild(document.createElement("br"));
 
         // Label para el peso
-        label = document.createElement("label");
-        label.setAttribute("for", "peso");
-        label.style.marginRight = "5px";
-        label.innerHTML = "Peso:";
-        fragment.appendChild(label);
+        element = document.createElement("label");
+        element.setAttribute("for", "peso");
+        element.style.marginRight = "5px";
+        element.innerHTML = "Peso:";
+        fragment.appendChild(element);
 
         // Input para el peso
         element = document.createElement("input");
         element.setAttribute("type", "number");
-        element.setAttribute("name", "peso");
+        element.setAttribute("id", "peso");
         fragment.appendChild(element);
 
         fragment.appendChild(document.createElement("br"));
         fragment.appendChild(document.createElement("br"));
 
         // Label para la fecha de nacimiento
-        label = document.createElement("label");
-        label.setAttribute("for", "fecha");
-        label.style.marginRight = "5px";
-        label.innerHTML = "Fecha de nacimiento:";
-        fragment.appendChild(label);
+        element = document.createElement("label");
+        element.setAttribute("for", "fecha");
+        element.style.marginRight = "5px";
+        element.innerHTML = "Fecha de nacimiento:";
+        fragment.appendChild(element);
 
         // Input para la fecha de nacimiento
         element = document.createElement("input");
         element.setAttribute("type", "date");
-        element.setAttribute("name", "fecha");
+        element.setAttribute("id", "fecha");
         fragment.appendChild(element);
 
         fragment.appendChild(document.createElement("br"));
@@ -80,9 +89,9 @@
 
         // Botón para crear el gatito
         element = document.createElement("button");
-        element.setAttribute("name", "boton");
+        element.setAttribute("id", "crear");
         element.innerHTML = "Crear gatito";
-        element.addEventListener("click", function () {
+        element.addEventListener("click", () => {
             // ...
         });
         fragment.appendChild(element);
