@@ -28,6 +28,7 @@
         // Input para el nombre
         element = document.createElement("input");
         element.setAttribute("type", "text");
+        element.setAttribute("placeholder", "Introduce el nombre");
         element.setAttribute("id", "nombre");
         fragment.appendChild(element);
 
@@ -65,6 +66,9 @@
         // Input para el peso
         element = document.createElement("input");
         element.setAttribute("type", "number");
+        element.setAttribute("min", "1");
+        element.setAttribute("max", "9");
+        element.setAttribute("placeholder", "Introduce el peso");
         element.setAttribute("id", "peso");
         fragment.appendChild(element);
 
